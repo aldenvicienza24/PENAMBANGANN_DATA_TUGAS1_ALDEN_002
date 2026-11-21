@@ -1,0 +1,88 @@
+DESKRIPSI KASUS TRANSFORMASI DATA TRANSAKSI TOKO
+
+1. LATAR BELAKANG
+
+Data transaksi toko merupakan kumpulan data yang berisi informasi mengenai aktivitas penjualan, pelanggan, produk, dan pengiriman. Data tersebut dapat digunakan untuk mengetahui pola transaksi serta membantu proses analisis penjualan.
+
+Namun, data yang diperoleh masih memiliki beberapa permasalahan, seperti nilai kosong (missing value), format data yang tidak konsisten, nilai yang tidak valid, perbedaan satuan pengukuran, dan kategori yang penulisannya berbeda.
+
+Oleh karena itu, diperlukan proses data preparation, khususnya data cleansing dan data transformation, agar data menjadi lebih bersih, konsisten, dan siap digunakan untuk analisis.
+
+Dataset yang digunakan adalah Dataset_Transaksi_Toko.csv dengan jumlah 645 baris dan 33 kolom.
+
+2. IDENTIFIKASI MASALAH DATA
+
+Berdasarkan pemeriksaan dataset, ditemukan beberapa permasalahan sebagai berikut:
+
+A. Missing Value (Data Kosong)
+Terdapat beberapa kolom yang memiliki nilai kosong, yaitu:
+- rating: 210 data kosong
+- tanggal_kirim: 121 data kosong
+- pendapatan_bulanan: 90 data kosong
+- usia_pelanggan: 66 data kosong
+- usia_salin: 66 data kosong
+- status_member: 51 data kosong
+- diskon: 48 data kosong
+- berat_kiriman: 47 data kosong
+- total_belanja_90hari: 46 data kosong
+- durasi_proses: 40 data kosong
+- metode_bayar: 40 data kosong
+- kategori_produk: 39 data kosong
+- harga_satuan: 37 data kosong
+
+B. Nilai Tidak Valid
+Ditemukan nilai usia yang tidak masuk akal, seperti usia bernilai negatif atau terlalu tinggi. Selain itu, terdapat nilai ongkir negatif yang perlu diperiksa karena tidak sesuai dengan kondisi transaksi normal.
+
+C. Format Data Tidak Konsisten
+Beberapa data numerik memiliki format berbeda, misalnya angka yang ditulis dengan simbol mata uang, tanda titik, atau tanda koma. Data diskon juga memiliki format berbeda, seperti 0.25 dan 25%.
+
+D. Kategori Tidak Konsisten
+Terdapat penulisan kategori wilayah dan prioritas yang berbeda, meskipun memiliki arti yang sama. Contohnya:
+- Surabaya, SURABAYA, dan sby
+- Tinggi, TINGGI, dan high
+
+E. Perbedaan Satuan Pengukuran
+Data berat kiriman dapat menggunakan satuan yang berbeda, seperti gram dan kilogram. Perbedaan satuan ini perlu diseragamkan agar dapat dibandingkan dan dianalisis.
+
+F. Format Tanggal Tidak Konsisten
+Data tanggal memiliki kemungkinan format penulisan yang berbeda sehingga perlu diseragamkan agar dapat diproses sebagai tipe data tanggal.
+
+G. Data Jumlah Barang Tidak Seragam
+Kolom jumlah_barang memiliki data yang ditulis menggunakan angka maupun kata, seperti 2, dua, dan tiga. Terdapat juga nilai yang tidak dapat dibaca sebagai angka sehingga perlu dikonversi atau ditangani.
+
+3. TUJUAN TRANSFORMASI DATA
+
+Tujuan dari proses transformasi data ini adalah:
+1. Memperbaiki data yang kosong dan tidak valid.
+2. Mengubah data yang masih berbentuk teks menjadi numerik jika diperlukan.
+3. Menyeragamkan format penulisan data.
+4. Menangani missing value menggunakan metode imputasi yang sesuai.
+5. Melakukan normalisasi dan standardisasi menggunakan Decimal Scaling, Min-Max Scaling, Z-Score, dan Robust Scaling.
+6. Mengubah data kategorikal menjadi numerik menggunakan Label Encoding.
+7. Melakukan discretization untuk mengelompokkan data numerik ke dalam interval tertentu.
+8. Menyeragamkan satuan pengukuran berat kiriman.
+9. Melakukan aggregation untuk memperoleh ringkasan data berdasarkan wilayah.
+10. Melakukan attribute construction untuk membentuk atribut baru dari atribut yang sudah tersedia.
+11. Melakukan smoothing untuk mengurangi fluktuasi data berdasarkan waktu.
+
+4. PROSES PENYELESAIAN
+
+Proses penyelesaian dilakukan melalui tahapan data preparation sesuai materi Classroom, yaitu data cleansing dan data transformation.
+
+Data cleansing dilakukan dengan memeriksa missing value, memperbaiki nilai yang tidak valid, serta menyeragamkan data yang tidak konsisten.
+
+Selanjutnya, data transformation dilakukan melalui beberapa metode, yaitu scaling, label encoding, discretization, measurement conversion, aggregation, attribute construction, dan smoothing.
+
+Untuk menangani missing value, dilakukan pemeriksaan jumlah data kosong serta statistik deskriptif menggunakan describe() dan describe(include="object"). Nilai kosong pada kolom numerik ditangani menggunakan median, sedangkan kolom kategorikal ditangani menggunakan modus. Kolom identitas dan tanggal tidak diimputasi menggunakan metode tersebut.
+
+5. HASIL YANG DIHARAPKAN
+
+Setelah proses data preparation dan data transformation dilakukan, diharapkan dataset transaksi toko memiliki format yang lebih seragam, nilai yang lebih valid, serta struktur data yang lebih mudah dipahami dan dianalisis.
+
+Dengan demikian, data dapat digunakan sebagai dasar untuk proses analisis selanjutnya.
+
+6. KESIMPULAN
+
+Permasalahan utama pada dataset transaksi toko adalah adanya missing value, nilai tidak valid, format data yang tidak konsisten, perbedaan kategori, dan perbedaan satuan pengukuran.
+
+Melalui proses data cleansing dan data transformation, permasalahan tersebut ditangani agar kualitas data meningkat. Proses ini sesuai dengan materi Data Preparation pada Classroom, yaitu mempersiapkan data melalui pembersihan dan transformasi sebelum digunakan pada tahap analisis berikutnya.
